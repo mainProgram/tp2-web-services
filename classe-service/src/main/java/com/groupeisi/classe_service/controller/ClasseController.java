@@ -38,4 +38,10 @@ public class ClasseController {
         ClasseEntity classe = new ClasseEntity(saveClasseDTO.libelle(), saveClasseDTO.professeursIds());
         return classeRepository.save(classe);
     }
+
+    @MutationMapping
+    public ClasseEntity updateClasse(@Argument long id, @Argument SaveClasseDTO saveClasseDTO){
+        ClasseEntity classe = new ClasseEntity(id, saveClasseDTO.libelle(), saveClasseDTO.professeursIds());
+        return classeRepository.save(classe);
+    }
 }

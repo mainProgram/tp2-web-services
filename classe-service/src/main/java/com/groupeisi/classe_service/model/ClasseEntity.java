@@ -11,7 +11,6 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 public class ClasseEntity {
 
     @Id
@@ -25,6 +24,11 @@ public class ClasseEntity {
 
     public ClasseEntity(){}
     public ClasseEntity(String libelle, List<Long> professeursIds) {
+        this.libelle = libelle;
+        this.professeursIds = professeursIds;
+    }
+    public ClasseEntity(Long id, String libelle, List<Long> professeursIds) {
+        this.id = id;
         this.libelle = libelle;
         this.professeursIds = professeursIds;
     }
