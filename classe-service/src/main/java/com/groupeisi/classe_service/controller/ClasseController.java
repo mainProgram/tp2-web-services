@@ -33,6 +33,12 @@ public class ClasseController {
         return classeRepository.findAll();
     }
 
+    @QueryMapping
+    public ClasseEntity getClasseById(@Argument Long id) {
+        LOG.debug("REST request to get one Class");
+        return classeRepository.findById(id).get();
+    }
+
     @MutationMapping
     public ClasseEntity createClasse(@Argument SaveClasseDTO saveClasseDTO){
         ClasseEntity classe = new ClasseEntity(saveClasseDTO.libelle(), saveClasseDTO.professeursIds());
@@ -43,5 +49,10 @@ public class ClasseController {
     public ClasseEntity updateClasse(@Argument long id, @Argument SaveClasseDTO saveClasseDTO){
         ClasseEntity classe = new ClasseEntity(id, saveClasseDTO.libelle(), saveClasseDTO.professeursIds());
         return classeRepository.save(classe);
+    }
+
+    @MutationMapping
+    public void deleteClasse(@Argument long id){
+        classeRepository.delete(classeRepository.findById(id).get());
     }
 }
