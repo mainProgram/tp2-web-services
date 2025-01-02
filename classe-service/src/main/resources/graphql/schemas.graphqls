@@ -1,0 +1,25 @@
+type Classe {
+  id: ID
+  libelle: String
+  professeursIds: [ID]
+}
+
+input SaveClasseDTO {
+  libelle: String!
+  professeursIds: [ID]
+}
+
+type Query {
+    getAllClasses: [Classe]
+    getClasseById(id: ID!): Classe
+}
+
+type Mutation {
+    createClasse(saveClasseDTO: SaveClasseDTO): Classe
+    updateClasse(id: ID!, saveClasseDTO: SaveClasseDTO!): Classe
+    deleteClasse(id: ID!): Boolean
+    batchCreate(classes: [SaveClasseDTO!]!): [Classe]
+}
+
+
+
