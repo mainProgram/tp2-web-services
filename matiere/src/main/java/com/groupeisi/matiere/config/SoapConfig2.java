@@ -1,3 +1,4 @@
+/*
 package com.groupeisi.matiere.config;
 
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
@@ -12,9 +13,10 @@ import org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition;
 import org.springframework.xml.xsd.SimpleXsdSchema;
 import org.springframework.xml.xsd.XsdSchema;
 
-@EnableWs
-@Configuration
+//@EnableWs
+//@Configuration
 public class SoapConfig extends WsConfigurerAdapter {
+
     @Bean
     public ServletRegistrationBean messageDispatcherServlet(ApplicationContext applicationContext) {
         MessageDispatcherServlet servlet = new MessageDispatcherServlet();
@@ -23,18 +25,18 @@ public class SoapConfig extends WsConfigurerAdapter {
         return new ServletRegistrationBean(servlet, "/service/*");
     }
 
-    @Bean(name = "matiere")
-    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema matiereSchema) {
+    @Bean(name = "studentDetailsWsdl")
+    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema studentSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-        wsdl11Definition.setPortTypeName("MatierePortType");
-        wsdl11Definition.setLocationUri("/soap-api");
-        wsdl11Definition.setTargetNamespace("http://groupeisi.com/matiere");
-        wsdl11Definition.setSchema(matiereSchema);
+        wsdl11Definition.setPortTypeName("StudentDetailsPort");
+        wsdl11Definition.setLocationUri("/service/student-details");
+        wsdl11Definition.setTargetNamespace("http://www.howtodoinjava.com/xml/school");
+        wsdl11Definition.setSchema(studentSchema);
         return wsdl11Definition;
     }
 
     @Bean
-    public XsdSchema matiereSchema() {
-        return new SimpleXsdSchema(new ClassPathResource("matiere.xsd"));
+    public XsdSchema studentSchema() {
+        return new SimpleXsdSchema(new ClassPathResource("student.xsd"));
     }
-}
+}*/

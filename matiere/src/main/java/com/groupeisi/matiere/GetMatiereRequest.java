@@ -6,11 +6,10 @@
 //
 
 
-package com.howtodoinjava.xml.school;
+package com.groupeisi.matiere;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlType;
 
@@ -25,7 +24,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -36,36 +35,27 @@ import jakarta.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "name"
+    "id"
 })
-@XmlRootElement(name = "StudentDetailsRequest")
-public class StudentDetailsRequest {
+@XmlRootElement(name = "GetMatiereRequest")
+public class GetMatiereRequest {
 
-    @XmlElement(required = true)
-    protected String name;
+    protected int id;
 
     /**
-     * Obtient la valeur de la propriété name.
+     * Obtient la valeur de la propriété id.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
-    public String getName() {
-        return name;
+    public int getId() {
+        return id;
     }
 
     /**
-     * Définit la valeur de la propriété name.
+     * Définit la valeur de la propriété id.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
-    public void setName(String value) {
-        this.name = value;
+    public void setId(int value) {
+        this.id = value;
     }
 
 }

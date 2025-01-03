@@ -1,0 +1,90 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:tns="http://groupeisi.com/matiere"
+        targetNamespace="http://groupeisi.com/matiere"
+        elementFormDefault="qualified">
+
+    <element name="GetAllMatieresRequest">
+        <complexType>
+            <sequence/>
+        </complexType>
+    </element>
+    <element name="GetAllMatieresResponse">
+        <complexType>
+            <sequence>
+                <element name="matiere" type="tns:Matiere" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="CreateMatiereRequest">
+        <complexType>
+            <sequence>
+                <element name="libelle" type="string"/>
+                <element name="coefficient" type="double"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="CreateMatiereResponse">
+        <complexType>
+            <sequence>
+                <element name="id" type="int"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="GetMatiereRequest">
+        <complexType>
+            <sequence>
+                <element name="id" type="int"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="GetMatiereResponse">
+        <complexType>
+            <sequence>
+                <element name="id" type="int"/>
+                <element name="libelle" type="string"/>
+                <element name="coefficient" type="double"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="UpdateMatiereRequest">
+        <complexType>
+            <sequence>
+                <element name="id" type="int"/>
+                <element name="libelle" type="string"/>
+                <element name="coefficient" type="double"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="UpdateMatiereResponse">
+        <complexType>
+            <sequence>
+                <element name="status" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="DeleteMatiereRequest">
+        <complexType>
+            <sequence>
+                <element name="id" type="int"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="DeleteMatiereResponse">
+        <complexType>
+            <sequence>
+                <element name="status" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <complexType name="Matiere">
+        <sequence>
+            <element name="id" type="int"/>
+            <element name="libelle" type="string"/>
+            <element name="coefficient" type="double"/>
+        </sequence>
+    </complexType>
+</schema>

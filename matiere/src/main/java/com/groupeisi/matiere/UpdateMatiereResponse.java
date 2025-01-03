@@ -6,7 +6,7 @@
 //
 
 
-package com.howtodoinjava.xml.school;
+package com.groupeisi.matiere;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
@@ -25,7 +25,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="status" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -36,36 +36,36 @@ import jakarta.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "name"
+    "status"
 })
-@XmlRootElement(name = "StudentDetailsRequest")
-public class StudentDetailsRequest {
+@XmlRootElement(name = "UpdateMatiereResponse")
+public class UpdateMatiereResponse {
 
     @XmlElement(required = true)
-    protected String name;
+    protected String status;
 
     /**
-     * Obtient la valeur de la propriété name.
+     * Obtient la valeur de la propriété status.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getName() {
-        return name;
+    public String getStatus() {
+        return status;
     }
 
     /**
-     * Définit la valeur de la propriété name.
+     * Définit la valeur de la propriété status.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setName(String value) {
-        this.name = value;
+    public void setStatus(String value) {
+        this.status = value;
     }
 
 }

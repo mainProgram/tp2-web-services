@@ -5,9 +5,47 @@
 Ce fichier a été généré par Eclipse Implementation of JAXB, v3.0.0 
 Voir https://eclipse-ee4j.github.io/jaxb-ri 
 Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-Généré le : 2025.01.03 à 12:25:49 PM UTC 
+Généré le : 2025.01.03 à 03:58:22 PM UTC 
 
   -->
+  <bindings scd="x-schema::tns" xmlns:tns="http://groupeisi.com/matiere">
+    <schemaBindings map="false">
+      <package name="com.groupeisi.matiere"/>
+    </schemaBindings>
+    <bindings scd="tns:GetAllMatieresRequest">
+      <class ref="com.groupeisi.matiere.GetAllMatieresRequest"/>
+    </bindings>
+    <bindings scd="tns:GetAllMatieresResponse">
+      <class ref="com.groupeisi.matiere.GetAllMatieresResponse"/>
+    </bindings>
+    <bindings scd="~tns:Matiere">
+      <class ref="com.groupeisi.matiere.Matiere"/>
+    </bindings>
+    <bindings scd="tns:CreateMatiereRequest">
+      <class ref="com.groupeisi.matiere.CreateMatiereRequest"/>
+    </bindings>
+    <bindings scd="tns:CreateMatiereResponse">
+      <class ref="com.groupeisi.matiere.CreateMatiereResponse"/>
+    </bindings>
+    <bindings scd="tns:GetMatiereRequest">
+      <class ref="com.groupeisi.matiere.GetMatiereRequest"/>
+    </bindings>
+    <bindings scd="tns:GetMatiereResponse">
+      <class ref="com.groupeisi.matiere.GetMatiereResponse"/>
+    </bindings>
+    <bindings scd="tns:UpdateMatiereRequest">
+      <class ref="com.groupeisi.matiere.UpdateMatiereRequest"/>
+    </bindings>
+    <bindings scd="tns:UpdateMatiereResponse">
+      <class ref="com.groupeisi.matiere.UpdateMatiereResponse"/>
+    </bindings>
+    <bindings scd="tns:DeleteMatiereRequest">
+      <class ref="com.groupeisi.matiere.DeleteMatiereRequest"/>
+    </bindings>
+    <bindings scd="tns:DeleteMatiereResponse">
+      <class ref="com.groupeisi.matiere.DeleteMatiereResponse"/>
+    </bindings>
+  </bindings>
   <bindings scd="x-schema::tns" xmlns:tns="http://www.howtodoinjava.com/xml/school">
     <schemaBindings map="false">
       <package name="com.howtodoinjava.xml.school"/>

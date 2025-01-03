@@ -101,6 +101,7 @@
 				<configuration>
 					<sources>
 						<source>src/main/resources/student.xsd</source>
+						<source>src/main/resources/matiere.xsd</source>
 					</sources>
 					<outputDirectory>src/main/java</outputDirectory>
 					<clearOutputDir>false</clearOutputDir>

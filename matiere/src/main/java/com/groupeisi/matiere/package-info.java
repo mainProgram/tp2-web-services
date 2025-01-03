@@ -5,5 +5,5 @@
 // Généré le : 2025.01.03 à 03:58:22 PM UTC 
 //
 
-@jakarta.xml.bind.annotation.XmlSchema(namespace = "http://www.howtodoinjava.com/xml/school", elementFormDefault = jakarta.xml.bind.annotation.XmlNsForm.QUALIFIED)
-package com.howtodoinjava.xml.school;
+@jakarta.xml.bind.annotation.XmlSchema(namespace = "http://groupeisi.com/matiere", elementFormDefault = jakarta.xml.bind.annotation.XmlNsForm.QUALIFIED)
+package com.groupeisi.matiere;
