@@ -36,6 +36,10 @@ management:
       probability: 1.0 # report 100% of traces
 
 spring:
+  graphql:
+    enabled: true
+    servlet:
+      enabled: true
   devtools:
     restart:
       enabled: true

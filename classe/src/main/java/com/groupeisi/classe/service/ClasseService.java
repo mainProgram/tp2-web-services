@@ -1,6 +1,8 @@
 package com.groupeisi.classe.service;
 
 import com.groupeisi.classe.service.dto.ClasseDTO;
+import com.groupeisi.classe.service.dto.SaveClasseDTO;
+
 import java.util.List;
 import java.util.Optional;
 

@@ -1,6 +1,7 @@
 package com.groupeisi.classe.service.dto;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -14,6 +15,9 @@ public class ClasseDTO implements Serializable {
     private String libelle;
 
     private Boolean status;
+
+
+    private List<Long> professeursIds;
 
     public Long getId() {
         return id;
@@ -39,6 +43,13 @@ public class ClasseDTO implements Serializable {
         this.status = status;
     }
 
+    public List<Long> getProfesseursIds() {
+        return professeursIds;
+    }
+
+    public void setProfesseursIds(List<Long> professeursIds) {
+        this.professeursIds = professeursIds;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) {

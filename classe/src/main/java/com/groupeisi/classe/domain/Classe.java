@@ -28,9 +28,6 @@ Classe implements Serializable {
     @Column(name = "libelle")
     private String libelle;
 
-    @Column(name = "status")
-    private Boolean status;
-
     @ElementCollection
     private List<Long> professeursIds;
 
@@ -71,19 +68,6 @@ Classe implements Serializable {
         this.libelle = libelle;
     }
 
-    public Boolean getStatus() {
-        return this.status;
-    }
-
-    public Classe status(Boolean status) {
-        this.setStatus(status);
-        return this;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
-    }
-
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -109,7 +93,20 @@ Classe implements Serializable {
         return "Classe{" +
             "id=" + getId() +
             ", libelle='" + getLibelle() + "'" +
-            ", status='" + getStatus() + "'" +
             "}";
+    }
+
+    public Classe() {
+    }
+
+    public Classe(Long id, String libelle, List<Long> professeursIds) {
+        this.id = id;
+        this.libelle = libelle;
+        this.professeursIds = professeursIds;
+    }
+
+    public Classe(String libelle, List<Long> professeursIds) {
+        this.libelle = libelle;
+        this.professeursIds = professeursIds;
     }
 }

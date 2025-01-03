@@ -73,7 +73,7 @@ class ClasseResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Classe createEntity() {
-        return new Classe().libelle(DEFAULT_LIBELLE).status(DEFAULT_STATUS);
+        return new Classe().libelle(DEFAULT_LIBELLE);
     }
 
     /**
@@ -83,7 +83,7 @@ class ClasseResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Classe createUpdatedEntity() {
-        return new Classe().libelle(UPDATED_LIBELLE).status(UPDATED_STATUS);
+        return new Classe().libelle(UPDATED_LIBELLE);
     }
 
     @BeforeEach
@@ -192,7 +192,7 @@ class ClasseResourceIT {
         Classe updatedClasse = classeRepository.findById(classe.getId()).orElseThrow();
         // Disconnect from session so that the updates on updatedClasse are not directly saved in db
         em.detach(updatedClasse);
-        updatedClasse.libelle(UPDATED_LIBELLE).status(UPDATED_STATUS);
+        updatedClasse.libelle(UPDATED_LIBELLE);
         ClasseDTO classeDTO = classeMapper.toDto(updatedClasse);
 
         restClasseMockMvc
@@ -285,7 +285,7 @@ class ClasseResourceIT {
         Classe partialUpdatedClasse = new Classe();
         partialUpdatedClasse.setId(classe.getId());
 
-        partialUpdatedClasse.libelle(UPDATED_LIBELLE).status(UPDATED_STATUS);
+        partialUpdatedClasse.libelle(UPDATED_LIBELLE);
 
         restClasseMockMvc
             .perform(
@@ -314,7 +314,7 @@ class ClasseResourceIT {
         Classe partialUpdatedClasse = new Classe();
         partialUpdatedClasse.setId(classe.getId());
 
-        partialUpdatedClasse.libelle(UPDATED_LIBELLE).status(UPDATED_STATUS);
+        partialUpdatedClasse.libelle(UPDATED_LIBELLE);
 
         restClasseMockMvc
             .perform(

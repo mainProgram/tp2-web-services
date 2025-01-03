@@ -47,8 +47,7 @@ public class ClasseAsserts {
     public static void assertClasseUpdatableFieldsEquals(Classe expected, Classe actual) {
         assertThat(expected)
             .as("Verify Classe relevant properties")
-            .satisfies(e -> assertThat(e.getLibelle()).as("check libelle").isEqualTo(actual.getLibelle()))
-            .satisfies(e -> assertThat(e.getStatus()).as("check status").isEqualTo(actual.getStatus()));
+            .satisfies(e -> assertThat(e.getLibelle()).as("check libelle").isEqualTo(actual.getLibelle()));
     }
 
     /**

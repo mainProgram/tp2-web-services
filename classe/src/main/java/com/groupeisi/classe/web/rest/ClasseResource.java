@@ -1,3 +1,4 @@
+/*
 package com.groupeisi.classe.web.rest;
 
 import com.groupeisi.classe.repository.ClasseRepository;
@@ -17,9 +18,11 @@ import org.springframework.web.bind.annotation.*;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
+*/
 /**
  * REST controller for managing {@link com.groupeisi.classe.domain.Classe}.
- */
+ *//*
+
 @RestController
 @RequestMapping("/api/classes")
 public class ClasseResource {
@@ -40,26 +43,29 @@ public class ClasseResource {
         this.classeRepository = classeRepository;
     }
 
-    /**
+    */
+/**
      * {@code POST  /classes} : Create a new classe.
      *
      * @param classeDTO the classeDTO to create.
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new classeDTO, or with status {@code 400 (Bad Request)} if the classe has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
-    @PostMapping("")
-    public ResponseEntity<ClasseDTO> createClasse(@RequestBody ClasseDTO classeDTO) throws URISyntaxException {
-        LOG.debug("REST request to save Classe : {}", classeDTO);
-        if (classeDTO.getId() != null) {
-            throw new BadRequestAlertException("A new classe cannot already have an ID", ENTITY_NAME, "idexists");
-        }
-        classeDTO = classeService.save(classeDTO);
-        return ResponseEntity.created(new URI("/api/classes/" + classeDTO.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, classeDTO.getId().toString()))
-            .body(classeDTO);
-    }
+     *//*
 
-    /**
+//    @PostMapping("")
+//    public ResponseEntity<ClasseDTO> createClasse(@RequestBody ClasseDTO classeDTO) throws URISyntaxException {
+//        LOG.debug("REST request to save Classe : {}", classeDTO);
+//        if (classeDTO.getId() != null) {
+//            throw new BadRequestAlertException("A new classe cannot already have an ID", ENTITY_NAME, "idexists");
+//        }
+//        classeDTO = classeService.save(classeDTO);
+//        return ResponseEntity.created(new URI("/api/classes/" + classeDTO.getId()))
+//            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, classeDTO.getId().toString()))
+//            .body(classeDTO);
+//    }
+
+    */
+/**
      * {@code PUT  /classes/:id} : Updates an existing classe.
      *
      * @param id the id of the classeDTO to save.
@@ -68,7 +74,8 @@ public class ClasseResource {
      * or with status {@code 400 (Bad Request)} if the classeDTO is not valid,
      * or with status {@code 500 (Internal Server Error)} if the classeDTO couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
+     *//*
+
     @PutMapping("/{id}")
     public ResponseEntity<ClasseDTO> updateClasse(
         @PathVariable(value = "id", required = false) final Long id,
@@ -92,7 +99,8 @@ public class ClasseResource {
             .body(classeDTO);
     }
 
-    /**
+    */
+/**
      * {@code PATCH  /classes/:id} : Partial updates given fields of an existing classe, field will ignore if it is null
      *
      * @param id the id of the classeDTO to save.
@@ -102,7 +110,8 @@ public class ClasseResource {
      * or with status {@code 404 (Not Found)} if the classeDTO is not found,
      * or with status {@code 500 (Internal Server Error)} if the classeDTO couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
+     *//*
+
     @PatchMapping(value = "/{id}", consumes = { "application/json", "application/merge-patch+json" })
     public ResponseEntity<ClasseDTO> partialUpdateClasse(
         @PathVariable(value = "id", required = false) final Long id,
@@ -128,23 +137,27 @@ public class ClasseResource {
         );
     }
 
-    /**
+    */
+/**
      * {@code GET  /classes} : get all the classes.
      *
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of classes in body.
-     */
+     *//*
+
     @GetMapping("")
     public List<ClasseDTO> getAllClasses() {
         LOG.debug("REST request to get all Classes");
         return classeService.findAll();
     }
 
-    /**
+    */
+/**
      * {@code GET  /classes/:id} : get the "id" classe.
      *
      * @param id the id of the classeDTO to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the classeDTO, or with status {@code 404 (Not Found)}.
-     */
+     *//*
+
     @GetMapping("/{id}")
     public ResponseEntity<ClasseDTO> getClasse(@PathVariable("id") Long id) {
         LOG.debug("REST request to get Classe : {}", id);
@@ -152,12 +165,14 @@ public class ClasseResource {
         return ResponseUtil.wrapOrNotFound(classeDTO);
     }
 
-    /**
+    */
+/**
      * {@code DELETE  /classes/:id} : delete the "id" classe.
      *
      * @param id the id of the classeDTO to delete.
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
-     */
+     *//*
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteClasse(@PathVariable("id") Long id) {
         LOG.debug("REST request to delete Classe : {}", id);
@@ -167,3 +182,4 @@ public class ClasseResource {
             .build();
     }
 }
+*/
