@@ -12,10 +12,10 @@ public interface EtudiantService {
 
     List<EtudiantResponse> getAllEtudiants();
 
-    Optional<EtudiantResponse> getEtudiantById(String id);
+    Optional<EtudiantResponse> getEtudiantById(Long id);
 
-    boolean deleteEtudiant(String id);
+    boolean deleteEtudiant(Long id);
 
-    Optional<EtudiantResponse> updateEtudiant(String id, EtudiantRequest request);
+    Optional<EtudiantResponse> updateEtudiant(Long id, EtudiantRequest request);
 
 }

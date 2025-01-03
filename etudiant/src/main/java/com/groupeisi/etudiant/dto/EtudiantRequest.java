@@ -1,15 +1,15 @@
 package com.groupeisi.etudiant.dto;
 
 import com.groupeisi.etudiant.utils.enums.SexeEnum;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class EtudiantRequest {
 
     private String nom;

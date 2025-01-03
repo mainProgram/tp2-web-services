@@ -11,5 +11,4 @@ import lombok.Setter;
 @Setter
 public class EntityNotFoundException extends RuntimeException {
     private String message;
-
 }
