@@ -1,1 +1,54 @@
 http://localhost:8092/service/matiere.wsdl
+
+get one
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="http://groupeisi.com/matiere">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sch:GetMatiereRequest>
+         <sch:id>1</sch:id>
+      </sch:GetMatiereRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+get all
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="http://groupeisi.com/matiere">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sch:GetAllMatieresRequest>
+
+      </sch:GetAllMatieresRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+save
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="http://groupeisi.com/matiere">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sch:CreateMatiereRequest>
+         <sch:libelle>WEB SERVICES</sch:libelle>
+         <sch:coefficient>1</sch:coefficient>
+      </sch:CreateMatiereRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+update
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="http://groupeisi.com/matiere">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sch:UpdateMatiereRequest>
+        <sch:id>1</sch:id>
+         <sch:libelle>WEB SERVICES</sch:libelle>
+         <sch:coefficient>4</sch:coefficient>
+      </sch:UpdateMatiereRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+delete
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="http://groupeisi.com/matiere">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sch:DeleteMatiereRequest>
+         <sch:id>2</sch:id>
+      </sch:DeleteMatiereRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
