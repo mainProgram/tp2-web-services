@@ -1,15 +1,14 @@
 package com.groupeisi.etudiant.dto;
 
-import com.groupeisi.etudiant.utils.enums.SexeEnum;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class EtudiantResponse {
 
     private Long id;
@@ -20,7 +19,7 @@ public class EtudiantResponse {
 
     private LocalDate dateNaissance;
 
-    private SexeEnum sexe;
+    private String sexe;
 
     private String matricule;
 }

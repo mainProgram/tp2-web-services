@@ -1,7 +1,5 @@
 package com.groupeisi.etudiant.model;
 
-import com.groupeisi.etudiant.utils.enums.SexeEnum;
-import com.groupeisi.etudiant.utils.enums.SexeEnumConstraint;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,8 +24,7 @@ public class EtudiantEntity {
 
     private LocalDate dateNaissance;
 
-    @SexeEnumConstraint
-    private SexeEnum sexe;
+    private String sexe;
 
     private String matricule;
 }

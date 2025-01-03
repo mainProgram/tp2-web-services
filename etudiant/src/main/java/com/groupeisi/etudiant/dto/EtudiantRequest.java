@@ -1,6 +1,5 @@
 package com.groupeisi.etudiant.dto;
 
-import com.groupeisi.etudiant.utils.enums.SexeEnum;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -18,7 +17,7 @@ public class EtudiantRequest {
 
     private LocalDate dateNaissance;
 
-    private SexeEnum sexe;
+    private String sexe;
 
     private String matricule;
 }
