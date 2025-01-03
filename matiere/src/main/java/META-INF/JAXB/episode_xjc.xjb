@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings version="3.0" xmlns="https://jakarta.ee/xml/ns/jaxb">
+  <!--
+
+Ce fichier a été généré par Eclipse Implementation of JAXB, v3.0.0 
+Voir https://eclipse-ee4j.github.io/jaxb-ri 
+Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
+Généré le : 2025.01.03 à 12:25:49 PM UTC 
+
+  -->
+  <bindings scd="x-schema::tns" xmlns:tns="http://www.howtodoinjava.com/xml/school">
+    <schemaBindings map="false">
+      <package name="com.howtodoinjava.xml.school"/>
+    </schemaBindings>
+    <bindings scd="tns:StudentDetailsRequest">
+      <class ref="com.howtodoinjava.xml.school.StudentDetailsRequest"/>
+    </bindings>
+    <bindings scd="tns:StudentDetailsResponse">
+      <class ref="com.howtodoinjava.xml.school.StudentDetailsResponse"/>
+    </bindings>
+    <bindings scd="~tns:Student">
+      <class ref="com.howtodoinjava.xml.school.Student"/>
+    </bindings>
+  </bindings>
+</bindings>
+
