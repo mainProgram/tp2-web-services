@@ -11,6 +11,7 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Endpoint
@@ -71,16 +72,45 @@ public class MatiereEndpoint {
         return response;
     }
 
+//    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetAllMatieresRequest")
+//    @ResponsePayload
+//    public GetAllMatieresResponse getAllMatieres(@RequestPayload GetAllMatieresRequest request) {
+//        List<Matiere> matieres = matiereService.getAllMatieres();
+//        GetAllMatieresResponse response = new GetAllMatieresResponse();
+//        matieres.forEach(matiere -> {
+//            com.groupeisi.matiere.Matiere soapMatiere = mapToSoapMatiere(matiere);
+//            response.getMatiere().add(soapMatiere);
+//        });
+//        return response;
+//    }
+
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetAllMatieresRequest")
     @ResponsePayload
     public GetAllMatieresResponse getAllMatieres(@RequestPayload GetAllMatieresRequest request) {
-        List<Matiere> matieres = matiereService.getAllMatieres();
         GetAllMatieresResponse response = new GetAllMatieresResponse();
-        matieres.forEach(matiere -> {
-            com.groupeisi.matiere.Matiere soapMatiere = mapToSoapMatiere(matiere);
-            response.getMatiere().add(soapMatiere);
-        });
+        response.getMatiere().addAll(
+                toSoapMatiereList(matiereService.getAllMatieres())
+        );
         return response;
+    }
+
+    public List<com.groupeisi.matiere.Matiere> toSoapMatiereList(List<Matiere> entities) {
+        if (entities == null) {
+            return null;
+        }
+        return entities.stream()
+                .map(this::toSoapMatiere)
+                .collect(Collectors.toList());
+    }
+
+    public com.groupeisi.matiere.Matiere toSoapMatiere(Matiere entity) {
+        if (entity == null) {
+            return null;
+        }
+        com.groupeisi.matiere.Matiere soapMatiere = new com.groupeisi.matiere.Matiere();
+        soapMatiere.setId(entity.getId());
+        soapMatiere.setLibelle(entity.getLibelle());
+        return soapMatiere;
     }
 
     private com.groupeisi.matiere.Matiere mapToSoapMatiere(Matiere entityMatiere) {
