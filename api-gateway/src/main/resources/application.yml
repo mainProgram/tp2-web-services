@@ -18,18 +18,62 @@ spring:
           uri: http://localhost:8092
           predicates:
             - Path=/api/v1/etudiants/**
+          metadata:
+            cors:
+              allowedOrigins: '*'
+              allowedMethods:
+                - GET
+                - POST
+                - PUT
+                - DELETE
+                - OPTIONS
+              allowedHeaders: '*'
+              maxAge: 30
         - id: professeurs
           uri: http://localhost:8094
           predicates:
             - Path=/api/v1/professeurs/**
+          metadata:
+            cors:
+              allowedOrigins: '*'
+              allowedMethods:
+                - GET
+                - POST
+                - PUT
+                - DELETE
+                - OPTIONS
+              allowedHeaders: '*'
+              maxAge: 30
         - id: matieres
           uri: http://localhost:8091
           predicates:
             - Path=/service/**
+          metadata:
+            cors:
+              allowedOrigins: '*'
+              allowedMethods:
+                - GET
+                - POST
+                - PUT
+                - DELETE
+                - OPTIONS
+              allowedHeaders: '*'
+              maxAge: 30
         - id: classes
           uri: http://localhost:8093
           predicates:
             - Path=/graphql/**
+          metadata:
+            cors:
+              allowedOrigins: '*'
+              allowedMethods:
+                - GET
+                - POST
+                - PUT
+                - DELETE
+                - OPTIONS
+              allowedHeaders: '*'
+              maxAge: 30
 
 eureka:
   instance:
