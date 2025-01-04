@@ -1,0 +1,12 @@
+Etudiant (id, nom, prenom, dateNaissance, matricule, sexe, #classeId)
+
+Professeur (id, nom, prenom, telephone, specialite)  ----- Classe
+
+Matiere (id, libelle, coefficient) ----- Classe
+
+
+                                    ---- Professeur
+Classe (id, libelle, coefficient)
+                                    ---- Etudiant
+
+                                    ----- Matiere
