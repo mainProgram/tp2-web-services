@@ -11,7 +11,7 @@ module.exports = new Eureka({
             '$': 8094,
             '@enabled': true,
         },
-        vipAddress: '192.168.59.1',
+        vipAddress: '192.168.0.1',
         dataCenterInfo: {
             '@class': 'com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo',
             name: 'MyOwn',

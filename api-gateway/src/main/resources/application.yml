@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: api-gateway
+  main:
+    web-application-type: REACTIVE
+    allow-bean-definition-overriding: true
+  cloud:
+    discovery:
+      enabled: true
+    config:
+      enabled: false
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: etudiants
+          uri: http://localhost:8092
+          predicates:
+            - Path=/api/v1/etudiants/**
+        - id: professeurs
+          uri: http://localhost:8094
+          predicates:
+            - Path=/api/v1/professeurs/**
+        - id: matieres
+          uri: http://localhost:8091
+          predicates:
+            - Path=/service/**
+        - id: classes
+          uri: http://localhost:8093
+          predicates:
+            - Path=/graphql/**
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+
+server:
+  port: 8090
