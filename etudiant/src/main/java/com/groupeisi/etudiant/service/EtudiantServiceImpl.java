@@ -60,6 +60,7 @@ public class EtudiantServiceImpl implements EtudiantService{
                     etudiant.setNom(etudiantRequest.getNom());
                     etudiant.setPrenom(etudiantRequest.getPrenom());
                     etudiant.setDateNaissance(etudiantRequest.getDateNaissance());
+                    etudiant.setMatricule(etudiantRequest.getMatricule());
                     etudiant.setSexe(etudiantRequest.getSexe());
                     EtudiantEntity updatedEtudiant = etudiantRepository.save(etudiant);
                     return etudiantMapper.toEtudiantResponse(updatedEtudiant);
