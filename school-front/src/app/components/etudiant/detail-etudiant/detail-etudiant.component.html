@@ -1,0 +1,32 @@
+<ng-container *ngIf="etudiant!=null">
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>Détails de l'étudiant</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="my-3">
+                            <p>Prénom(s) : {{ etudiant.prenom }}</p>
+                            <p>Nom : {{ etudiant.nom }}</p>
+                            <p>Sexe : {{ etudiant.sexe }}</p>
+                            <p>Matricule : {{ etudiant.matricule }}</p>
+                            <p>Date de naissance : {{ etudiant.dateNaissance }}</p>
+                        </div>
+                        <div class="text-end">
+                            <button mat-stroked-button color="primary" routerLink="/etudiants" class="mx-2">Liste</button>
+                            <button mat-stroked-button color="primary" [routerLink]="['/etudiants/edit/', etudiant.id]">Édition</button>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</ng-container>
+<div *ngIf="etudiant == null" class="text-center">
+    <h3 class="text-danger my-5">
+        L'étudiant n'existe pas !
+    </h3>
+    <button mat-stroked-button color="primary" routerLink="/etudiants" >Liste des étudiants</button>
+</div>

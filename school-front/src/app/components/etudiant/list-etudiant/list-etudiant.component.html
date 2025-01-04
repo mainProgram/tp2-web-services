@@ -1,0 +1,53 @@
+<ng-container *ngIf="etudiants() && etudiants().length > 0">
+    <h3 class="my-5 text-center">
+        Liste des Étudiants
+        <button
+                mat-icon-button
+                routerLink="/etudiants/create"
+                matTooltip="Ajouter un étudiant"
+        >
+            <mat-icon>add</mat-icon>
+        </button>
+    </h3>
+
+    <div class="row cards-container px-5">
+        <mat-card *ngFor="let etudiant of etudiants()" class="etudiant-card">
+            <mat-card-header>
+                <mat-card-title>
+                    {{ etudiant.prenom + " " + etudiant.nom }}
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p class="text-center">Sexe: {{ etudiant.sexe }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button
+                        mat-icon-button
+                        matTooltip="Voir les détails"
+                        (click)="seeDetails(etudiant.id)"
+                >
+                    <mat-icon>visibility</mat-icon>
+                </button>
+                <button
+                        mat-icon-button
+                        matTooltip="Modifier l'étudiant"
+                        (click)="modifierEtudiant(etudiant.id)"
+                >
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button
+                        mat-icon-button
+                        matTooltip="Supprimer l'étudiant"
+                        (click)="deleteEtudiant(etudiant.id)"
+                >
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</ng-container>
+
+<div *ngIf="!etudiants() || etudiants().length<= 0" class="text-center">
+    <h1 class="text-danger my-5">La liste des étudiants est vide !</h1>
+    <button mat-stroked-button color="primary" routerLink="/etudiants/create" >Ajouter un étudiant</button>
+</div>
