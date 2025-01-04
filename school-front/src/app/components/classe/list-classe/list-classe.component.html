@@ -1,0 +1,50 @@
+<ng-container *ngIf="classes && classes.length > 0">
+    <h3 class="my-5 text-center">
+        Liste des classes
+        <button
+                mat-icon-button
+                routerLink="/classes/create"
+                matTooltip="Ajouter une classe"
+        >
+            <mat-icon>add</mat-icon>
+        </button>
+    </h3>
+
+    <div class="row cards-container px-5">
+        <mat-card *ngFor="let classe of classes" class="classe-card">
+            <mat-card-header>
+                <mat-card-title>
+                    {{ classe.libelle }}
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-actions>
+                <button
+                        mat-icon-button
+                        matTooltip="Voir les détails"
+                        (click)="seeDetails(classe.id)"
+                >
+                    <mat-icon>visibility</mat-icon>
+                </button>
+                <button
+                        mat-icon-button
+                        matTooltip="Modifier la classe"
+                        (click)="modifierClasse(classe.id)"
+                >
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button
+                        mat-icon-button
+                        matTooltip="Supprimer la classe"
+                        (click)="deleteClasse(classe.id)"
+                >
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</ng-container>
+
+<div *ngIf="!classes || classes.length<= 0" class="text-center">
+    <h1 class="text-danger my-5">La liste des classes est vide !</h1>
+    <button mat-stroked-button color="primary" routerLink="/classes/create" >Ajouter une classe</button>
+</div>
