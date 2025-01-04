@@ -20,4 +20,6 @@ public class EtudiantRequest {
     private String sexe;
 
     private String matricule;
+
+    private Long classeId;
 }

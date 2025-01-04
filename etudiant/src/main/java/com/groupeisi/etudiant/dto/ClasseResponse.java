@@ -9,19 +9,10 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Getter
 @Setter
-public class EtudiantResponse {
+public class ClasseResponse {
 
     private Long id;
 
     private String nom;
 
-    private String prenom;
-
-    private LocalDate dateNaissance;
-
-    private String sexe;
-
-    private String matricule;
-
-    private Long classeId;
 }

@@ -27,4 +27,6 @@ public class EtudiantEntity {
     private String sexe;
 
     private String matricule;
+
+    private Long classeId;
 }
