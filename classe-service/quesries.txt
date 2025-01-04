@@ -2,15 +2,21 @@ query {getAllClasses{
   id
   libelle
   professeursIds
+    matieresIds
+    professeursIds
 }}
 
 mutation createClasse {
   createClasse(saveClasseDTO: {
     libelle: "M2GL"
     professeursIds: [1, 6]
+  	matieresIds: [1,3]
+    etudiantsIds: []
   }){
     id
     libelle
+    professeursIds
+    matieresIds
     professeursIds
   }
 }
@@ -19,9 +25,13 @@ mutation updateClasse {
   updateClasse(id:1, saveClasseDTO: {
     libelle: "M3GL"
     professeursIds: [6]
+    matieresIds: [1,3]
+        etudiantsIds: []
   }){
     id
     libelle
+    professeursIds
+    matieresIds
     professeursIds
   }
 }
@@ -30,4 +40,6 @@ query {getClasseById(id:1){
   id
   libelle
   professeursIds
+    matieresIds
+    professeursIds
 }}
