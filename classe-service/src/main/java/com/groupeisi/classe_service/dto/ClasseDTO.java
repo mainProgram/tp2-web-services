@@ -15,4 +15,8 @@ public class ClasseDTO {
     private String libelle;
 
     private List<Long> professeursIds;
+
+    private List<Long> matieresIds;
+
+    private List<Long> etudiantsIds;
 }

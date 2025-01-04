@@ -2,11 +2,15 @@ type Classe {
   id: ID
   libelle: String
   professeursIds: [ID]
+  matieresIds: [ID]
+  etudiantsIds: [ID]
 }
 
 input SaveClasseDTO {
   libelle: String!
   professeursIds: [ID]
+    matieresIds: [ID]
+    etudiantsIds: [ID]
 }
 
 type Query {

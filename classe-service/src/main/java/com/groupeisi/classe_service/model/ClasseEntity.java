@@ -22,14 +22,24 @@ public class ClasseEntity {
     @ElementCollection
     private List<Long> professeursIds;
 
+    @ElementCollection
+    private List<Long> matieresIds;
+
+    @ElementCollection
+    private List<Long> etudiantsIds;
+
     public ClasseEntity(){}
-    public ClasseEntity(String libelle, List<Long> professeursIds) {
+    public ClasseEntity(String libelle, List<Long> professeursIds, List<Long> etudiantsIds, List<Long> matieresIds) {
         this.libelle = libelle;
+        this.matieresIds = matieresIds;
+        this.etudiantsIds = etudiantsIds;
         this.professeursIds = professeursIds;
     }
-    public ClasseEntity(Long id, String libelle, List<Long> professeursIds) {
+    public ClasseEntity(Long id, String libelle, List<Long> professeursIds, List<Long> etudiantsIds, List<Long> matieresIds) {
         this.id = id;
         this.libelle = libelle;
+        this.matieresIds = matieresIds;
+        this.etudiantsIds = etudiantsIds;
         this.professeursIds = professeursIds;
     }
 }

@@ -41,13 +41,17 @@ public class ClasseController {
 
     @MutationMapping
     public ClasseEntity createClasse(@Argument SaveClasseDTO saveClasseDTO){
-        ClasseEntity classe = new ClasseEntity(saveClasseDTO.libelle(), saveClasseDTO.professeursIds());
+        ClasseEntity classe = new ClasseEntity(
+                saveClasseDTO.libelle(), saveClasseDTO.professeursIds(), saveClasseDTO.etudiantsIds(), saveClasseDTO.matieresIds()
+        );
         return classeRepository.save(classe);
     }
 
     @MutationMapping
     public ClasseEntity updateClasse(@Argument long id, @Argument SaveClasseDTO saveClasseDTO){
-        ClasseEntity classe = new ClasseEntity(id, saveClasseDTO.libelle(), saveClasseDTO.professeursIds());
+        ClasseEntity classe = new ClasseEntity(
+                id, saveClasseDTO.libelle(), saveClasseDTO.professeursIds(), saveClasseDTO.etudiantsIds(), saveClasseDTO.matieresIds()
+        );
         return classeRepository.save(classe);
     }
 
