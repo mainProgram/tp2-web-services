@@ -2,49 +2,44 @@ package com.groupeisi.matiere.service;
 
 
 import com.groupeisi.matiere.model.Matiere;
+import com.groupeisi.matiere.repository.MatiereRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class MatiereService {
-    private final Map<Integer, Matiere> matieres = new HashMap<>();
-    private int nextId = 1;
+
+    private final MatiereRepository matiereRepository;
+
+    public MatiereService(MatiereRepository matiereRepository) {
+        this.matiereRepository = matiereRepository;
+    }
 
     public List<Matiere> getAllMatieres() {
-        if (matieres == null) {
-            return null;
-        }
-        return new ArrayList<Matiere>(matieres.values());
+        return matiereRepository.findAll();
     }
     public Matiere createMatiere(Matiere matiere) {
-        matiere.setId(nextId++);
-        matieres.put(matiere.getId(), matiere);
-        return matiere;
+        return matiereRepository.save(matiere);
     }
 
     public Matiere getMatiere(int id) {
-        return matieres.get(id);
+        return matiereRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Matiere not found with id: " + id));
     }
-
 
     public boolean updateMatiere(Matiere matiere) {
-        if(matieres.containsKey(matiere.getId())){
-            matieres.put(matiere.getId(), matiere);
-            return true;
+        if (!matiereRepository.existsById(matiere.getId())) {
+            return false;
         }
-        return false;
+        matiereRepository.save(matiere);
+        return true;
     }
 
-
     public boolean deleteMatiere(int id) {
-        if (matieres.containsKey(id)) {
-            matieres.remove(id);
-            return true;
+        if (!matiereRepository.existsById(id)) {
+            return false;
         }
-        return false;
+        matiereRepository.deleteById(id);
+        return true;
     }
 }

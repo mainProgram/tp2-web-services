@@ -1,6 +1,14 @@
 package com.groupeisi.matiere.model;
 
-public class Matiere extends com.groupeisi.matiere.Matiere {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
+public class Matiere {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String libelle;
     private double coefficient;

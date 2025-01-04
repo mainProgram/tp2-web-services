@@ -10,8 +10,6 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 
@@ -75,28 +73,21 @@ public class MatiereEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetAllMatieresRequest")
     @ResponsePayload
-    public GetAllMatieresResponse GetAllMatieres(@RequestPayload GetAllMatieresRequest request) {
+    public GetAllMatieresResponse getAllMatieres(@RequestPayload GetAllMatieresRequest request) {
         List<Matiere> matieres = matiereService.getAllMatieres();
-        return (allMatieresResponseMapper(matieres));
+        GetAllMatieresResponse response = new GetAllMatieresResponse();
+        matieres.forEach(matiere -> {
+            com.groupeisi.matiere.Matiere soapMatiere = mapToSoapMatiere(matiere);
+            response.getMatiere().add(soapMatiere);
+        });
+        return response;
     }
 
-    private GetAllMatieresResponse allMatieresResponseMapper(List<Matiere> matieres) {
-
-        GetAllMatieresResponse getAllMatieresResponse = new GetAllMatieresResponse();
-        for (Matiere matiere : matieres) {
-            getAllMatieresResponse.getMatiere().add(matiere);
-        }
-
-        return getAllMatieresResponse;
-    }
-
-    private com.groupeisi.matiere.Matiere matiereMapper(GetMatiereResponse matiere) {
-
-        com.groupeisi.matiere.Matiere matiereDetails = new com.groupeisi.matiere.Matiere();
-        matiereDetails.setId(matiere.getId());
-        matiereDetails.setCoefficient(matiere.getCoefficient());
-        matiereDetails.setLibelle(matiere.getLibelle());
-
-        return matiereDetails;
+    private com.groupeisi.matiere.Matiere mapToSoapMatiere(Matiere entityMatiere) {
+        com.groupeisi.matiere.Matiere soapMatiere = new com.groupeisi.matiere.Matiere();
+        soapMatiere.setId(entityMatiere.getId());
+        soapMatiere.setLibelle(entityMatiere.getLibelle());
+        soapMatiere.setCoefficient(entityMatiere.getCoefficient());
+        return soapMatiere;
     }
 }
