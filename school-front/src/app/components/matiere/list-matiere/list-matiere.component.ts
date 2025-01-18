@@ -55,18 +55,6 @@ export class ListMatiereComponent implements OnInit{
     })
   }
 
-  seeDetails(id: number){
-    this.router.navigateByUrl('/').then((response: any) => {
-      this.router.navigateByUrl("/matieres/"+id)
-    })
-  }
-
-  modifierMatiere(id: number){
-    this.router.navigateByUrl('/').then((response: any) => {
-      this.router.navigateByUrl("/matieres/edit/"+id)
-    })
-  }
-
   deleteMatiere(id: number){
     Swal.fire({
       title: 'Suppression',

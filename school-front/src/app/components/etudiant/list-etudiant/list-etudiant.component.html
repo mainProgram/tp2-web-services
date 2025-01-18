@@ -1,4 +1,4 @@
-<ng-container *ngIf="etudiants() && etudiants().length > 0">
+<ng-container *ngIf="!loading() && (etudiants() && etudiants().length > 0)">
     <h3 class="my-5 text-center">
         Liste des Étudiants
         <button
@@ -24,14 +24,14 @@
                 <button
                         mat-icon-button
                         matTooltip="Voir les détails"
-                        (click)="seeDetails(etudiant.id)"
+                        [routerLink]="['/etudiants/', etudiant.id]"
                 >
                     <mat-icon>visibility</mat-icon>
                 </button>
                 <button
                         mat-icon-button
                         matTooltip="Modifier l'étudiant"
-                        (click)="modifierEtudiant(etudiant.id)"
+                        [routerLink]="['/etudiants/edit/', etudiant.id]"
                 >
                     <mat-icon>edit</mat-icon>
                 </button>
@@ -47,7 +47,9 @@
     </div>
 </ng-container>
 
-<div *ngIf="!etudiants() || etudiants().length<= 0" class="text-center">
+<div *ngIf="!loading() && (!etudiants() || etudiants().length<= 0)" class="text-center">
     <h1 class="text-danger my-5">La liste des étudiants est vide !</h1>
     <button mat-stroked-button color="primary" routerLink="/etudiants/create" >Ajouter un étudiant</button>
 </div>
+
+<app-loader [loading]="loading()"></app-loader>

@@ -1,4 +1,4 @@
-<ng-container *ngIf="professeur!=null">
+<ng-container *ngIf="!loading() && professeur!=null">
     <div class="container my-5">
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 col-lg-6">
@@ -23,9 +23,11 @@
         </div>
     </div>
 </ng-container>
-<div *ngIf="professeur == null" class="text-center">
+<div *ngIf="!loading() && professeur == null" class="text-center">
     <h3 class="text-danger my-5">
         Le professeur n'existe pas !
     </h3>
     <button mat-stroked-button color="primary" routerLink="/professeurs" >Liste des professeurs</button>
 </div>
+
+<app-loader [loading]="loading()"></app-loader>

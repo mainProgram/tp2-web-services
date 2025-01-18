@@ -8,6 +8,8 @@ import {MatTooltip} from "@angular/material/tooltip";
 import {MatButton, MatIconButton} from "@angular/material/button";
 import {NgForOf, NgIf} from "@angular/common";
 import Swal from "sweetalert2";
+import {LoaderService} from "../../../services/loader.service";
+import {LoaderComponent} from "../../../shared/components/loader/loader.component";
 
 @Component({
   selector: 'app-list-professeur',
@@ -23,7 +25,8 @@ import Swal from "sweetalert2";
     NgIf,
     RouterLink,
     MatCardContent,
-    NgForOf
+    NgForOf,
+    LoaderComponent
   ],
   templateUrl: './list-professeur.component.html',
   standalone: true,
@@ -32,25 +35,18 @@ import Swal from "sweetalert2";
 export class ListProfesseurComponent {
   router = inject(Router);
   professeurService = inject(ProfesseurService);
-
+  loaderService = inject(LoaderService);
+  loading = inject(LoaderService).loading;
   constructor() {
-    this.professeurService.fetchProfesseurs().pipe(take(1)).subscribe();
+    this.loaderService.showLoader()
+    this.professeurService.fetchProfesseurs().pipe(take(1)).subscribe({
+      next: () => {this.loaderService.hideLoader()},
+      error: () => {this.loaderService.hideLoader()},
+    });
   }
 
   get professeurs() {
     return this.professeurService.resources;
-  }
-  
-  seeDetails(id: number){
-    this.router.navigateByUrl('/').then((response: any) => {
-      this.router.navigateByUrl("/professeurs/"+id)
-    })
-  }
-
-  modifierProfesseur(id: number){
-    this.router.navigateByUrl('/').then((response: any) => {
-      this.router.navigateByUrl("/professeurs/edit/"+id)
-    })
   }
 
   deleteProfesseur(id: number){

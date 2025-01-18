@@ -18,17 +18,10 @@
                 </mat-card-title>
             </mat-card-header>
             <mat-card-actions>
-                <!--                <button-->
-                <!--                        mat-icon-button-->
-                <!--                        matTooltip="Voir les détails"-->
-                <!--                        (click)="seeDetails(matiere.id)"-->
-                <!--                >-->
-                <!--                    <mat-icon>visibility</mat-icon>-->
-                <!--                </button>-->
                 <button
                         mat-icon-button
                         matTooltip="Modifier la matière"
-                        (click)="modifierMatiere(matiere.id)"
+                        [routerLink]="['/matieres/edit/', matiere.id]"
                 >
                     <mat-icon>edit</mat-icon>
                 </button>

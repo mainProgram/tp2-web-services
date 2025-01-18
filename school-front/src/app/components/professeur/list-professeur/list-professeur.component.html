@@ -1,4 +1,4 @@
-<ng-container *ngIf="professeurs() && professeurs().length > 0">
+<ng-container *ngIf="!loading() && (professeurs() && professeurs().length > 0)">
     <h3 class="my-5 text-center">
         Liste des Professeurs
         <button
@@ -24,14 +24,14 @@
                 <button
                         mat-icon-button
                         matTooltip="Voir les détails"
-                        (click)="seeDetails(professeur.id)"
+                        [routerLink]="['/professeurs/', professeur.id]"
                 >
                     <mat-icon>visibility</mat-icon>
                 </button>
                 <button
                         mat-icon-button
                         matTooltip="Modifier le professeur"
-                        (click)="modifierProfesseur(professeur.id)"
+                        [routerLink]="['/professeurs/edit/', professeur.id]"
                 >
                     <mat-icon>edit</mat-icon>
                 </button>
@@ -47,7 +47,9 @@
     </div>
 </ng-container>
 
-<div *ngIf="!professeurs() || professeurs().length<= 0" class="text-center">
+<div *ngIf="!loading() && (!professeurs() || professeurs().length<= 0)" class="text-center">
     <h1 class="text-danger my-5">La liste des professeurs est vide !</h1>
     <button mat-stroked-button color="primary" routerLink="/professeurs/create" >Ajouter un professeur</button>
 </div>
+
+<app-loader [loading]="loading()"></app-loader>

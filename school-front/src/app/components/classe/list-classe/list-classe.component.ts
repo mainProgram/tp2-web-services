@@ -43,13 +43,6 @@ export class ListClasseComponent implements OnInit{
       }
     })
   }
-
-  seeDetails(id: number){
-    this.router.navigateByUrl('/').then((response: any) => {
-      this.router.navigateByUrl("/classes/"+id)
-    })
-  }
-
   modifierClasse(id: number){
     this.router.navigateByUrl('/').then((response: any) => {
       this.router.navigateByUrl("/classes/edit/"+id)

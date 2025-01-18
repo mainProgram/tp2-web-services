@@ -5,7 +5,7 @@ import {MatListModule} from "@angular/material/list";
 import {CommonModule} from "@angular/common";
 import {Router, RouterLink} from "@angular/router";
 import {EtudiantService} from "../../../services/etudiant.service";
-import {take} from "rxjs";
+import {finalize, take} from "rxjs";
 import Swal from 'sweetalert2';
 import {MatTooltip} from "@angular/material/tooltip";
 import {
@@ -15,11 +15,13 @@ import {
   MatCardHeader,
   MatCardTitle
 } from "@angular/material/card";
+import {LoaderService} from "../../../services/loader.service";
+import {LoaderComponent} from "../../../shared/components/loader/loader.component";
 @Component({
   selector: 'app-list-etudiant',
   imports: [
-      CommonModule, MatListModule, MatButtonModule, MatIconModule, MatTooltip, RouterLink,
-      MatCardContent, MatCardActions, MatCardTitle, MatCardHeader, MatCard
+    CommonModule, MatListModule, MatButtonModule, MatIconModule, MatTooltip, RouterLink,
+    MatCardContent, MatCardActions, MatCardTitle, MatCardHeader, MatCard, LoaderComponent
   ],
   standalone: true,
   templateUrl: './list-etudiant.component.html',
@@ -28,25 +30,19 @@ import {
 export class ListEtudiantComponent {
   router = inject(Router);
   etudiantService = inject(EtudiantService);
+  loaderService = inject(LoaderService);
+  loading = inject(LoaderService).loading;
 
   constructor() {
-    this.etudiantService.fetchEtudiants().pipe(take(1)).subscribe();
+    this.loaderService.showLoader()
+    this.etudiantService.fetchEtudiants().pipe(
+      take(1),
+      finalize(() => this.loaderService.hideLoader())
+    ).subscribe();
   }
 
   get etudiants() {
     return this.etudiantService.resources;
-  }
-
-  seeDetails(id: number){
-    this.router.navigateByUrl('/').then((response: any) => {
-      this.router.navigateByUrl("/etudiants/"+id)
-    })
-  }
-
-  modifierEtudiant(id: number){
-    this.router.navigateByUrl('/').then((response: any) => {
-      this.router.navigateByUrl("/etudiants/edit/"+id)
-    })
   }
 
   deleteEtudiant(id: number){
