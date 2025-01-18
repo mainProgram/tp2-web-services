@@ -1,8 +1,8 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {ClasseService} from "../../../services/classe.service";
 import {CommonModule} from "@angular/common";
 import {MatButton, MatIconButton} from "@angular/material/button";
-import {MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/material/card";
+import {MatCard, MatCardActions, MatCardHeader, MatCardTitle} from "@angular/material/card";
 import {MatIcon} from "@angular/material/icon";
 import {MatTooltip} from "@angular/material/tooltip";
 import {Router, RouterLink} from "@angular/router";
@@ -15,7 +15,6 @@ import Swal from "sweetalert2";
     MatButton,
     MatCard,
     MatCardActions,
-    MatCardContent,
     MatCardHeader,
     MatCardTitle,
     MatIcon,
@@ -27,13 +26,22 @@ import Swal from "sweetalert2";
   templateUrl: './list-classe.component.html',
   styleUrl: './list-classe.component.sass'
 })
-export class ListClasseComponent {
+export class ListClasseComponent implements OnInit{
   router = inject(Router);
   private classeService = inject(ClasseService);
   classes: any[] = [];
 
-  constructor() {
-    this.classeService.getClasses().subscribe((data) => (this.classes = data));
+  ngOnInit(): void {
+    this.getClasses()
+  }
+
+  getClasses(){
+    this.classeService.getClasses().subscribe({
+      next: value => {
+        console.log(value)
+        this.classes = value
+      }
+    })
   }
 
   seeDetails(id: number){
@@ -58,16 +66,14 @@ export class ListClasseComponent {
       cancelButtonText: 'Annuler'
     }).then((result) => {
       if (result.value) {
-        Swal.fire(
-            'Succès',
-            'Suppression réussie !',
-            'success'
-        ).then(()=>{
-          this.classeService.deleteClasse(id).subscribe({
-            next: (data) => {
-              console.log(data)
-            }
-          })
+        this.classeService.deleteClasse(id).subscribe({
+          next: (data) => {
+            Swal.fire(
+                'Succès',
+                'Suppression réussie !',
+                'success'
+            ).then(() => this.getClasses())
+          }
         })
       }
     })

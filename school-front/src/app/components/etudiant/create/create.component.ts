@@ -11,8 +11,6 @@ import {CommonModule} from "@angular/common";
 import {EtudiantService} from "../../../services/etudiant.service";
 import {MatIcon} from "@angular/material/icon";
 import {MatTooltip} from "@angular/material/tooltip";
-import {IApiResponse} from "../../../models/api-response";
-import {IEtudiantResponse} from "../../../models/etudiant/etudiant-response.model";
 
 @Component({
   selector: 'app-create',

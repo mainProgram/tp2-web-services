@@ -31,7 +31,7 @@ export class ClasseService {
           `,
           context: {
             uri: this.fullUrl,
-          },
+          }, fetchPolicy: 'network-only',
         })
         .valueChanges.pipe(map((result: any) => result.data.getAllClasses));
   }
@@ -82,11 +82,11 @@ export class ClasseService {
         }).pipe(map((result: any) => result.data.createClasse));
     }
 
-    updateClasse(saveClasseDTO: IClasseRequest): Observable<any> {
+    updateClasse(id: number, saveClasseDTO: IClasseRequest): Observable<any> {
         return this.apollo.mutate({
             mutation: gql`
-            mutation UpdateClasse($saveClasseDTO: SaveClasseDTO) {
-                updateClasse(saveClasseDTO: $saveClasseDTO) {
+            mutation UpdateClasse($id: ID!, $saveClasseDTO: SaveClasseDTO!) {
+                updateClasse(id: $id, saveClasseDTO: $saveClasseDTO) {
                     id
                     libelle
                     professeursIds
@@ -99,6 +99,7 @@ export class ClasseService {
                 uri: this.fullUrl,
             },
             variables: {
+                id: id.toString(),
                 saveClasseDTO: saveClasseDTO,
             },
         }).pipe(map((result: any) => result.data.updateClasse));

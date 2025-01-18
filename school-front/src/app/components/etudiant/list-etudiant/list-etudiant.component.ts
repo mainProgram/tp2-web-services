@@ -59,16 +59,15 @@ export class ListEtudiantComponent {
       cancelButtonText: 'Annuler'
     }).then((result) => {
       if (result.value) {
-        Swal.fire(
-            'Succès',
-            'Suppression réussie !',
-            'success'
-        ).then(()=>{
-          this.etudiantService.deleteEtudiant(id).subscribe({
-            next: (data) => {
-              console.log(data)
-            }
-          })
+        this.etudiantService.deleteEtudiant(id).subscribe({
+          next: (data) => {
+            console.log(data)
+            Swal.fire(
+                'Succès',
+                'Suppression réussie !',
+                'success'
+            )
+          }
         })
       }
     })
