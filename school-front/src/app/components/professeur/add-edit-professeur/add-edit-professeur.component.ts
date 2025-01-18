@@ -2,9 +2,7 @@ import {Component, inject} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ProfesseurService} from "../../../services/professeur.service";
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
-import {MatDatepicker, MatDatepickerModule, MatDatepickerToggle} from "@angular/material/datepicker";
 import {MatFormField, MatFormFieldModule, MatLabel} from "@angular/material/form-field";
-import {MatOption, MatSelect} from "@angular/material/select";
 import {MatInput, MatInputModule} from "@angular/material/input";
 import {MatButton, MatIconButton} from "@angular/material/button";
 import {MatNativeDateModule} from "@angular/material/core";
@@ -14,17 +12,13 @@ import {MatTooltip} from "@angular/material/tooltip";
 
 @Component({
   selector: 'app-add-edit-professeur',
-  imports: [MatDatepickerToggle,
+  imports: [
     MatLabel,
     MatFormField,
-    MatDatepicker,
-    MatSelect,
-    MatOption,
     ReactiveFormsModule,
     MatInput,
     MatButton,
     MatNativeDateModule,
-    MatDatepickerModule,
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,

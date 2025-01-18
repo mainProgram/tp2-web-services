@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {ResourceService} from './resource.service';
-import {IApiResponse} from '../models/api-response';
 import {map, tap} from 'rxjs';
 import {IProfesseurResponse} from '../models/professeur/professeur-response.model';
 import {IProfesseurRequest} from '../models/professeur/professeur-request.model';

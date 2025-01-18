@@ -9,13 +9,12 @@ export const routes: Routes = [
     path: 'professeurs',
     loadChildren: () => import('./routes/professeur.routes').then(m => m.PROFESSEUR_ROUTES)
   },
-  // {
-  //   path: 'matieres',
-  //   loadComponent: () => import('./components/matiere/create/create.component').then(m => m.CreateComponent)
-  // },
+  {
+    path: 'matieres',
+    loadChildren: () => import('./routes/matiere.routes').then(m => m.MATIERE_ROUTES)
+  },
   {
     path: 'classes',
     loadChildren: () => import('./routes/classe.routes').then(m => m.CLASSE_ROUTES)
   }
-
 ];

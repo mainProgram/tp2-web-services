@@ -1,0 +1,50 @@
+<ng-container *ngIf="matieres && matieres.length > 0">
+    <h3 class="my-5 text-center">
+        Liste des matieres
+        <button
+                mat-icon-button
+                routerLink="/matieres/create"
+                matTooltip="Ajouter une matière"
+        >
+            <mat-icon>add</mat-icon>
+        </button>
+    </h3>
+
+    <div class="row cards-container px-5">
+        <mat-card *ngFor="let matiere of matieres" class="matiere-card">
+            <mat-card-header>
+                <mat-card-title>
+                    {{ matiere.libelle }}
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-actions>
+                <!--                <button-->
+                <!--                        mat-icon-button-->
+                <!--                        matTooltip="Voir les détails"-->
+                <!--                        (click)="seeDetails(matiere.id)"-->
+                <!--                >-->
+                <!--                    <mat-icon>visibility</mat-icon>-->
+                <!--                </button>-->
+                <button
+                        mat-icon-button
+                        matTooltip="Modifier la matière"
+                        (click)="modifierMatiere(matiere.id)"
+                >
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button
+                        mat-icon-button
+                        matTooltip="Supprimer la matière"
+                        (click)="deleteMatiere(matiere.id)"
+                >
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</ng-container>
+
+<div *ngIf="!matieres || matieres.length<= 0" class="text-center">
+    <h1 class="text-danger my-5">La liste des matières est vide !</h1>
+    <button mat-stroked-button color="primary" routerLink="/matieres/create" >Ajouter une matière</button>
+</div>
