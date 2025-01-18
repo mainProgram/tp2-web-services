@@ -34,6 +34,63 @@ export class MatiereService{
     );
   }
 
+  getMatiere(id: number): Observable<Matiere> {
+    const body = `
+      <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="${this.NAMESPACE}">
+         <soapenv:Header/>
+         <soapenv:Body>
+            <sch:GetMatiereRequest>
+               <sch:id>${id}</sch:id>
+            </sch:GetMatiereRequest>
+         </soapenv:Body>
+      </soapenv:Envelope>`;
+
+    return this.callSoapService(body, 'getMatiere').pipe(
+        map(response => this.extractMatiere(response))
+    );
+  }
+
+  updateMatiere(matiere: Matiere): Observable<string> {
+    const body = `
+      <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="${this.NAMESPACE}">
+         <soapenv:Header/>
+         <soapenv:Body>
+            <sch:UpdateMatiereRequest>
+               <sch:id>${matiere.id}</sch:id>
+               <sch:libelle>${matiere.libelle}</sch:libelle>
+               <sch:coefficient>${matiere.coefficient}</sch:coefficient>
+            </sch:UpdateMatiereRequest>
+         </soapenv:Body>
+      </soapenv:Envelope>`;
+
+    return this.callSoapService(body, 'updateMatiere').pipe(
+        map(response => {
+          const parser = new DOMParser();
+          const xmlDoc = parser.parseFromString(response, 'text/xml');
+          return xmlDoc.getElementsByTagName('ns2:status')[0].textContent || '';
+        })
+    );
+  }
+  createMatiere(matiere: Matiere): Observable<number> {
+    const body = `
+      <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="${this.NAMESPACE}">
+         <soapenv:Header/>
+         <soapenv:Body>
+            <sch:CreateMatiereRequest>
+               <sch:libelle>${matiere.libelle}</sch:libelle>
+               <sch:coefficient>${matiere.coefficient}</sch:coefficient>
+            </sch:CreateMatiereRequest>
+         </soapenv:Body>
+      </soapenv:Envelope>`;
+
+    return this.callSoapService(body, 'createMatiere').pipe(
+        map(response => {
+          const parser = new DOMParser();
+          const xmlDoc = parser.parseFromString(response, 'text/xml');
+          return parseInt(xmlDoc.getElementsByTagName('ns2:id')[0].textContent || '0', 10);
+        })
+    );
+  }
   deleteMatiere(id: number): Observable<string> {
     console.log(id)
     const body = `
@@ -92,9 +149,9 @@ export class MatiereService{
     const xmlDoc = parser.parseFromString(response, 'text/xml');
 
     return {
-      id: parseInt(xmlDoc.getElementsByTagName('id')[0].textContent || '0', 10),
-      libelle: xmlDoc.getElementsByTagName('libelle')[0].textContent || '',
-      coefficient: parseFloat(xmlDoc.getElementsByTagName('coefficient')[0].textContent || '0')
+      id: parseInt(xmlDoc.getElementsByTagName('ns2:id')[0].textContent || '0', 10),
+      libelle: xmlDoc.getElementsByTagName('ns2:libelle')[0].textContent || '',
+      coefficient: parseFloat(xmlDoc.getElementsByTagName('ns2:coefficient')[0].textContent || '0')
     };
   }
 

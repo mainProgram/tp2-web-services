@@ -1,1 +1,33 @@
-<p>add-edit-matiere works!</p>
+<div class="container">
+    <form [formGroup]="matiereForm" (ngSubmit)="onSubmit()" class="form">
+        <h3 class="text-center my-5">
+            {{ matiereId ? "Modifier la matiere": "Créer une matiere" }}
+            <button
+                    mat-icon-button
+                    routerLink="/matieres"
+                    matTooltip="Liste des matieres"
+            >
+                <mat-icon>list</mat-icon>
+            </button>
+        </h3>
+        <mat-form-field appearance="fill">
+            <mat-label>Libellé</mat-label>
+            <input matInput placeholder="Libellé" formControlName="libelle">
+        </mat-form-field>
+        <div *ngIf="matiereForm.get('libelle')?.invalid && (matiereForm.get('libelle')?.dirty || matiereForm.get('libelle')?.touched)">
+            <span *ngIf="f['libelle'].getError('required')" class="text-danger">Ce champ est requis.</span>
+        </div>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Coefficient</mat-label>
+            <input matInput placeholder="coefficient" formControlName="coefficient" type="number">
+        </mat-form-field>
+        <div *ngIf="matiereForm.get('coefficient')?.invalid && (matiereForm.get('coefficient')?.dirty || matiereForm.get('coefficient')?.touched)">
+            <span *ngIf="f['coefficient'].getError('required')" class="text-danger">Ce champ est requis.</span>
+        </div>
+
+        <div class="mt-5 text-end">
+            <button mat-raised-button color="primary" type="submit">Enregistrer</button>
+        </div>
+    </form>
+</div>
