@@ -34,8 +34,6 @@ export class AddEditMatiereComponent  implements OnInit{
   matiereService = inject(MatiereService);
   router = inject(Router);
   route = inject(ActivatedRoute);
-  loaderService = inject(LoaderService);
-  loading = inject(LoaderService).loading;
 
   constructor(private fb: FormBuilder) {
     this.matiereForm = this.fb.group({
@@ -46,18 +44,14 @@ export class AddEditMatiereComponent  implements OnInit{
 
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('id');
-    this.loaderService.showLoader()
     if (id) {
       this.matiereId = +id;
       this.matiereService.getMatiere(this.matiereId).subscribe({
         next: (matiere) => {
-          console.log(matiere)
-          this.loaderService.hideLoader()
           this.matiereForm.get("libelle")?.setValue(matiere.libelle);
           this.matiereForm.get("coefficient")?.setValue(matiere.coefficient);
         },
         error: (err) => {
-          this.loaderService.hideLoader()
           console.error("Erreur lors du chargement de la matiere :", err);
         }
       });
@@ -65,20 +59,15 @@ export class AddEditMatiereComponent  implements OnInit{
   }
 
   onSubmit(): void {
-    this.loaderService.showLoader()
     if (this.matiereForm.valid) {
       if (this.matiereId) {
-        console.log(this.matiereId)
         this.matiereService.updateMatiere({...this.matiereForm.value, id: this.matiereId}).subscribe({
           next: (data : any) => {
-            console.log(data)
-            this.loaderService.hideLoader()
             this.router.navigateByUrl('/').then((response: any) => {
               this.router.navigateByUrl("/matieres")
             })
           },
           error: (err) => {
-            this.loaderService.hideLoader()
             console.error("Erreur lors de la mise à jour:", err);
           }
         });
@@ -86,14 +75,11 @@ export class AddEditMatiereComponent  implements OnInit{
       else {
         this.matiereService.createMatiere(this.matiereForm.value).subscribe({
           next: (data: any) => {
-            console.log(data)
-            this.loaderService.hideLoader()
             this.router.navigateByUrl('/').then((response: any) => {
               this.router.navigateByUrl("/matieres")
             })
           },
           error: (err) => {
-            this.loaderService.hideLoader()
             console.log(err)
           }
         })

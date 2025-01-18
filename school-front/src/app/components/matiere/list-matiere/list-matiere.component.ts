@@ -9,6 +9,7 @@ import {MatIcon} from "@angular/material/icon";
 import {MatTooltip} from "@angular/material/tooltip";
 import {LoaderService} from "../../../services/loader.service";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {LoaderComponent} from "../../../shared/components/loader/loader.component";
 
 @Component({
   selector: 'app-list-matiere',
@@ -23,7 +24,8 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
     MatIconButton,
     MatTooltip,
     RouterLink,
-    MatProgressSpinner
+    MatProgressSpinner,
+    LoaderComponent
   ],
   templateUrl: './list-matiere.component.html',
   standalone: true,
@@ -45,8 +47,10 @@ export class ListMatiereComponent implements OnInit{
     this.matiereService.getAllMatieres().subscribe({
       next: value => {
         this.loaderService.hideLoader()
-        console.log(value)
         this.matieres = value
+      },
+      error: err => {
+        this.loaderService.hideLoader()
       }
     })
   }

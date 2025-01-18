@@ -19,6 +19,5 @@ import {NgIf} from "@angular/common";
   styleUrl: './home.component.sass'
 })
 export class HomeComponent {
-  loading = inject(LoaderService).loading;
 
 }
