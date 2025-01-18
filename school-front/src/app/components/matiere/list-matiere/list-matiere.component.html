@@ -1,4 +1,4 @@
-<ng-container *ngIf="matieres && matieres.length > 0">
+<ng-container *ngIf="!loading() && (matieres && matieres.length > 0)">
     <h3 class="my-5 text-center">
         Liste des matieres
         <button
@@ -44,7 +44,12 @@
     </div>
 </ng-container>
 
-<div *ngIf="!matieres || matieres.length<= 0" class="text-center">
+<div *ngIf="!loading() && (!matieres || matieres.length <= 0)" class="text-center">
     <h1 class="text-danger my-5">La liste des matières est vide !</h1>
     <button mat-stroked-button color="primary" routerLink="/matieres/create" >Ajouter une matière</button>
 </div>
+
+<mat-progress-spinner
+        mode="indeterminate"
+        *ngIf="loading()"
+></mat-progress-spinner>

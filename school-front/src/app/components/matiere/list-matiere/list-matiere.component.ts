@@ -7,6 +7,8 @@ import {MatButton, MatIconButton} from "@angular/material/button";
 import {MatCard, MatCardActions, MatCardHeader, MatCardTitle} from "@angular/material/card";
 import {MatIcon} from "@angular/material/icon";
 import {MatTooltip} from "@angular/material/tooltip";
+import {LoaderService} from "../../../services/loader.service";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
 
 @Component({
   selector: 'app-list-matiere',
@@ -20,7 +22,8 @@ import {MatTooltip} from "@angular/material/tooltip";
     MatIcon,
     MatIconButton,
     MatTooltip,
-    RouterLink
+    RouterLink,
+    MatProgressSpinner
   ],
   templateUrl: './list-matiere.component.html',
   standalone: true,
@@ -29,6 +32,8 @@ import {MatTooltip} from "@angular/material/tooltip";
 export class ListMatiereComponent implements OnInit{
   router = inject(Router);
   private matiereService = inject(MatiereService);
+  loaderService = inject(LoaderService);
+  loading = inject(LoaderService).loading;
   matieres: any[] = [];
 
   ngOnInit(): void {
@@ -36,8 +41,10 @@ export class ListMatiereComponent implements OnInit{
   }
 
   getMatieres(){
+    this.loaderService.showLoader()
     this.matiereService.getAllMatieres().subscribe({
       next: value => {
+        this.loaderService.hideLoader()
         console.log(value)
         this.matieres = value
       }
