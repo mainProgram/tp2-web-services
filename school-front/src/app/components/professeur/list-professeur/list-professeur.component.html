@@ -1,0 +1,53 @@
+<ng-container *ngIf="professeurs() && professeurs().length > 0">
+    <h3 class="my-5 text-center">
+        Liste des Professeurs
+        <button
+                mat-icon-button
+                routerLink="/professeurs/create"
+                matTooltip="Ajouter un professeur"
+        >
+            <mat-icon>add</mat-icon>
+        </button>
+    </h3>
+
+    <div class="row cards-container px-5">
+        <mat-card *ngFor="let professeur of professeurs()" class="professeur-card">
+            <mat-card-header>
+                <mat-card-title>
+                    {{ professeur.prenom + " " + professeur.nom }}
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p class="text-center">Sexe: {{ professeur.nom }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button
+                        mat-icon-button
+                        matTooltip="Voir les détails"
+                        (click)="seeDetails(professeur.id)"
+                >
+                    <mat-icon>visibility</mat-icon>
+                </button>
+                <button
+                        mat-icon-button
+                        matTooltip="Modifier le professeur"
+                        (click)="modifierProfesseur(professeur.id)"
+                >
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button
+                        mat-icon-button
+                        matTooltip="Supprimer le professeur"
+                        (click)="deleteProfesseur(professeur.id)"
+                >
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</ng-container>
+
+<div *ngIf="!professeurs() || professeurs().length<= 0" class="text-center">
+    <h1 class="text-danger my-5">La liste des professeurs est vide !</h1>
+    <button mat-stroked-button color="primary" routerLink="/professeurs/create" >Ajouter un professeur</button>
+</div>

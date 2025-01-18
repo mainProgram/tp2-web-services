@@ -13,38 +13,38 @@ export class ProfesseurService extends ResourceService<IProfesseurResponse>{
 
   fetchProfesseurs() {
     return this.http
-      .get<IApiResponse>(baseUrl)
+      .get<IProfesseurResponse[]>(baseUrl)
       .pipe(
-        map((response) => response.data as IProfesseurResponse[]),
+        map((response) => response ),
         tap(this.setResources.bind(this))
       );
   }
 
   addProfesseur(professeur: IProfesseurRequest) {
     return this.http
-      .post<IApiResponse>(baseUrl, professeur)
+      .post<IProfesseurResponse[]>(baseUrl, professeur)
       .pipe(
-        map((response) => response.data as IProfesseurResponse[]),
+        map((response) => response as IProfesseurResponse[]),
         tap(this.setResources.bind(this))
       );
   }
 
-  getProfesseur(id: string) {
+  getProfesseur(id: number) {
     return this.http
-      .get<IApiResponse>(baseUrl+ "/"+ id)
+      .get<IProfesseurResponse>(baseUrl+ "/"+ id)
   }
 
-  deleteProfesseur(id: string) {
+  deleteProfesseur(id: number) {
     return this.http
-      .delete<IApiResponse>(`${baseUrl}/${id}`)
+      .delete<IProfesseurResponse>(`${baseUrl}/${id}`)
       .pipe(tap(() => this.removeResource(id)));
   }
 
-  updateProfesseur(id:string, professeur: IProfesseurRequest) {
+  updateProfesseur(id:number, professeur: IProfesseurRequest) {
     return this.http
-      .put<IApiResponse>(`${baseUrl}/${id}`, professeur)
+      .put<IProfesseurResponse[]>(`${baseUrl}/${id}`, professeur)
       .pipe(
-        map((response) => response.data as IProfesseurResponse[]),
+        map((response) => response as IProfesseurResponse[]),
         tap(this.setResources.bind(this))
       );
   }
