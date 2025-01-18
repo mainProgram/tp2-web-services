@@ -1,0 +1,49 @@
+<div class="container">
+    <form [formGroup]="professeurForm" (ngSubmit)="onSubmit()" class="professeur-form">
+        <h3 class="text-center my-5">
+            {{ professeurId ? "Modifier le professeur": "Créer un professeur" }}
+            <button
+                    mat-icon-button
+                    routerLink="/professeurs"
+                    matTooltip="Liste des étudiants"
+            >
+                <mat-icon>list</mat-icon>
+            </button>
+        </h3>
+        <mat-form-field appearance="fill">
+            <mat-label>Nom</mat-label>
+            <input matInput placeholder="Nom" formControlName="nom">
+        </mat-form-field>
+        <div *ngIf="professeurForm.get('nom')?.invalid && (professeurForm.get('nom')?.dirty || professeurForm.get('nom')?.touched)">
+            <span *ngIf="f['nom'].getError('required')" class="text-danger">Ce champ est requis.</span>
+        </div>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Prénom</mat-label>
+            <input matInput placeholder="Prénom" formControlName="prenom">
+        </mat-form-field>
+        <div *ngIf="professeurForm.get('prenom')?.invalid && (professeurForm.get('prenom')?.dirty || professeurForm.get('prenom')?.touched)">
+            <span *ngIf="f['prenom'].getError('required')" class="text-danger">Ce champ est requis.</span>
+        </div>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Téléphone</mat-label>
+            <input matInput formControlName="telephone" type="text" />
+        </mat-form-field>
+        <div *ngIf="professeurForm.get('telephone')?.invalid && (professeurForm.get('telephone')?.dirty || professeurForm.get('telephone')?.touched)">
+            <span *ngIf="f['telephone'].getError('required')" class="text-danger">Ce champ est requis.</span>
+        </div>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Specialité</mat-label>
+            <input matInput formControlName="specialite" type="text" />
+        </mat-form-field>
+        <div *ngIf="professeurForm.get('specialite')?.invalid && (professeurForm.get('specialite')?.dirty || professeurForm.get('specialite')?.touched)">
+            <span *ngIf="f['specialite'].getError('required')" class="text-danger">Ce champ est requis.</span>
+        </div>
+
+        <div class="mt-5 text-end">
+            <button mat-raised-button color="primary" type="submit">Enregistrer</button>
+        </div>
+    </form>
+</div>

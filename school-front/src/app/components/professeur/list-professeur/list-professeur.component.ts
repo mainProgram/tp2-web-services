@@ -38,7 +38,6 @@ export class ListProfesseurComponent {
   }
 
   get professeurs() {
-    console.log(this.professeurService.resources())
     return this.professeurService.resources;
   }
   

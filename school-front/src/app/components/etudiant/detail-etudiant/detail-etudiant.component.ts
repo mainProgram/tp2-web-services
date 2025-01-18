@@ -42,8 +42,4 @@ export class DetailEtudiantComponent implements OnInit{
       })
     }
   }
-
-  modifier(id: number){
-
-  }
 }
