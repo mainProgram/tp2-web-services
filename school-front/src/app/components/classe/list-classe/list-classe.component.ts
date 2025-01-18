@@ -7,6 +7,8 @@ import {MatIcon} from "@angular/material/icon";
 import {MatTooltip} from "@angular/material/tooltip";
 import {Router, RouterLink} from "@angular/router";
 import Swal from "sweetalert2";
+import {LoaderService} from "../../../services/loader.service";
+import {LoaderComponent} from "../../../shared/components/loader/loader.component";
 
 @Component({
   selector: 'app-list-classe',
@@ -20,7 +22,8 @@ import Swal from "sweetalert2";
     MatIcon,
     MatIconButton,
     MatTooltip,
-    RouterLink
+    RouterLink,
+    LoaderComponent
   ],
   standalone: true,
   templateUrl: './list-classe.component.html',
@@ -30,25 +33,26 @@ export class ListClasseComponent implements OnInit{
   router = inject(Router);
   private classeService = inject(ClasseService);
   classes: any[] = [];
+  loaderService = inject(LoaderService);
+  loading = inject(LoaderService).loading;
 
   ngOnInit(): void {
     this.getClasses()
   }
 
   getClasses(){
+    this.loaderService.showLoader()
     this.classeService.getClasses().subscribe({
       next: value => {
         console.log(value)
         this.classes = value
+        this.loaderService.hideLoader()
+      },
+      error: () => {
+        this.loaderService.hideLoader()
       }
     })
   }
-  modifierClasse(id: number){
-    this.router.navigateByUrl('/').then((response: any) => {
-      this.router.navigateByUrl("/classes/edit/"+id)
-    })
-  }
-
   deleteClasse(id: number){
     Swal.fire({
       title: 'Suppression',

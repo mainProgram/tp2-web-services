@@ -1,4 +1,4 @@
-<ng-container *ngIf="classes && classes.length > 0">
+<ng-container *ngIf="!loading() && (classes && classes.length > 0)">
     <h3 class="my-5 text-center">
         Liste des classes
         <button
@@ -37,7 +37,9 @@
     </div>
 </ng-container>
 
-<div *ngIf="!classes || classes.length<= 0" class="text-center">
+<div *ngIf="!loading() && (!classes || classes.length<= 0)" class="text-center">
     <h1 class="text-danger my-5">La liste des classes est vide !</h1>
     <button mat-stroked-button color="primary" routerLink="/classes/create" >Ajouter une classe</button>
 </div>
+
+<app-loader [loading]="loading()"></app-loader>
