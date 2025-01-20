@@ -6,6 +6,10 @@ import com.groupeisi.etudiant.service.EtudiantService;
 import com.groupeisi.etudiant.utils.exception.ApiResponse;
 import com.groupeisi.etudiant.utils.exception.ResponseUtil;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +22,15 @@ public class EtudiantController {
 
     public EtudiantController(EtudiantService etudiantService) {
         this.etudiantService = etudiantService;
+    }
+
+
+    @PreAuthorize("hasAuthority('SCOPE_TEST')")
+    @GetMapping("/ping")
+    public String ping() {
+        SecurityContext context = SecurityContextHolder.getContext();
+        Authentication authentication = context.getAuthentication();
+        return "Scopes: " + authentication.getAuthorities();
     }
 
     @GetMapping
