@@ -1,8 +1,5 @@
-import {Component, inject} from '@angular/core';
-import {LoaderService} from "../../services/loader.service";
+import {Component} from '@angular/core';
 import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/material/card";
-import {MatProgressSpinner} from "@angular/material/progress-spinner";
-import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-home',
@@ -10,9 +7,7 @@ import {NgIf} from "@angular/common";
     MatCardTitle,
     MatCardHeader,
     MatCard,
-    MatProgressSpinner,
-    MatCardContent,
-    NgIf
+    MatCardContent
   ],
   templateUrl: './home.component.html',
   standalone: true,

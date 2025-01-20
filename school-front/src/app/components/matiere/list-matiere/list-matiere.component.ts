@@ -8,7 +8,6 @@ import {MatCard, MatCardActions, MatCardHeader, MatCardTitle} from "@angular/mat
 import {MatIcon} from "@angular/material/icon";
 import {MatTooltip} from "@angular/material/tooltip";
 import {LoaderService} from "../../../services/loader.service";
-import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {LoaderComponent} from "../../../shared/components/loader/loader.component";
 
 @Component({
@@ -24,7 +23,6 @@ import {LoaderComponent} from "../../../shared/components/loader/loader.componen
     MatIconButton,
     MatTooltip,
     RouterLink,
-    MatProgressSpinner,
     LoaderComponent
   ],
   templateUrl: './list-matiere.component.html',

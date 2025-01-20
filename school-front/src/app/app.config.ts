@@ -1,4 +1,10 @@
-import { ApplicationConfig, provideZoneChangeDetection, inject } from '@angular/core';
+import {
+  ApplicationConfig,
+  provideZoneChangeDetection,
+  inject,
+  importProvidersFrom,
+  APP_INITIALIZER
+} from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -8,6 +14,10 @@ import {graphqlProvider} from "../../graphql.provider";
 import { provideApollo } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 import { InMemoryCache } from '@apollo/client/core';
+import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
+import {initializeKeycloak} from "../../keycloak-init";
+import {environment} from "../../environment/environment";
+import {NgIdleModule} from "@ng-idle/core";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,6 +35,13 @@ export const appConfig: ApplicationConfig = {
         }),
         cache: new InMemoryCache(),
       };
-    })
+    }),
+    importProvidersFrom(KeycloakAngularModule, NgIdleModule.forRoot()),
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService],
+    },
   ]
 };
